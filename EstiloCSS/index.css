@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: 50px;
+}
+
+nav {
+    height: 50px;
+    background-color: rgb(67, 31, 102);
+    border: 2px solid black;
+    border-radius: 10px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    box-shadow: 3px 8px 10px black;
+}
+
+main {
+    margin-top: 10px;
+}
+
+nav,
+a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    margin: 70px;
+    background-color: black;
+    border: 2px solid black;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+
+    /* Efecto 3D */
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.8);
+}
+
+section {
+    height: 800px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    /* separa los divs */
+    flex-wrap: wrap;
+    /* por si se ve en pantallas chicas */
+    background-color: rgb(67, 31, 102);
+
+}
+
+section div {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 280px;
+    /* para que no se achiquen demasiado */
+    border: 2px solid white;
+    box-sizing: border-box;
+}
+
+.link1 {
+    height: 50px;
+    background-color: rgb(67, 31, 102);
+    font-size: 25px;
+    border: 2px solid white;
+    box-shadow: 3px 8px 10px white;
+
+}
+
+.cuadro1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* reparte el espacio: arriba, centro, abajo */
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    height: 100%;
+    /* o un valor fijo si querés: ej. 400px */
+    box-sizing: border-box;
+}
+
+.cuadro2 {
+    display: flex;
+    flex-direction: column;
+    /* para que los elementos estén uno debajo del otro */
+    align-items: center;
+    /* centra horizontalmente */
+    justify-content: center;
+    /* opcional: centra verticalmente */
+    text-align: center;
+    /* centra el texto */
+    padding: 20px;
+    height: 100%;
+    /* opcional: o una altura fija */
+    box-sizing: border-box;
+}
+
+
+footer {
+    background-color: black;
+    color: white;
+    padding: 40px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+footer h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: rgb(67, 31, 102);
+    padding: 10px 20px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 100%;
+    flex: 1;
+    justify-content: center;
+}
+
+form label {
+    font-weight: bold;
+    width: 100%;
+}
+
+form input,
+form textarea {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 250px;
+    box-sizing: border-box;
+}
