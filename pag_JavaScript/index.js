@@ -78,6 +78,26 @@ document.addEventListener('DOMContentLoaded', function () {
             return true;
         }
     }
+
+    function validarEmail() {
+        const email = document.getElementById("Mail").value;
+        const regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+        const errorMail = document.getElementById("mail-error");
+
+        if( email === "") {
+            errorMail.textContent = "Ingrese un Email";
+            return false;
+        }
+        if (!regex.test(email)) {
+            errorMail.textContent = "Ingrese un mail valido";
+            return false;
+        } else {
+            errorMail.textContent = "";
+            return true;
+        }
+    }
+
+    
     //Seguir con las funciones acá
 
 
