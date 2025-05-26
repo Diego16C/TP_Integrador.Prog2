@@ -97,9 +97,39 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    
-    //Seguir con las funciones acá
+    function validarConsulta() {
+        const consulta = document.getElementById("Consulta").value;
+        const errorConsulta = document.getElementById("consulta-error");
 
+        if(consulta === "") {
+            errorConsulta.textContent = "Ingrese una consulta";
+            return false;
+        } else {
+            errorConsulta.textContent = "";
+            return true;
+        }
+    }
+
+    function mostrarConfirmacion() {
+        let mensajeExito = document.getElementById('success-message');
+        if (!mensajeExito) {
+            mensajeExito = document.createElement('div');
+            mensajeExito.id = 'success-message';
+            mensajeExito.style.cssText = `
+                background-color: #4CAF50;
+                color: white;
+                text-align: center;
+            `;
+            formulario.appendChild(mensajeExito);
+        }
+        
+        mensajeExito.textContent = 'Formulario de consulta enviado con exito';
+        
+        setTimeout(() => {
+            mensajeExito.textContent = '';
+            formulario.reset();
+        }, 3000);
+    }
 
 
 
@@ -121,6 +151,17 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('telefono-error').textContent = '';
     });
 
-    //seguir con los eventos acá
+    document.getElementById("Mail").addEventListener("blur", validarEmail);
+    document.getElementById("Mail").addEventListener("input", () => {
+        document.getElementById("mail-error").textContent = "";
+    });
+
+    document.getElementById("Consulta").addEventListener("blur", validarEmail);
+    document.getElementById("Consulta").addEventListener("input", () => {
+        document.getElementById("consulta-error").textContent = "";
+    });
+
+    
+
 
 });
