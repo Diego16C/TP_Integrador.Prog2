@@ -137,6 +137,7 @@ footer h2 {
     padding: 10px 20px;
 }
 
+/* arreglar esto pero con sus div*/
 form {
     display: flex;
     flex-wrap: wrap;
@@ -159,3 +160,4 @@ form textarea {
     width: 250px;
     box-sizing: border-box;
 }
+

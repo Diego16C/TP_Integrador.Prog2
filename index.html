@@ -43,30 +43,47 @@
 
     </main>
 
+
+    <!-- En el CSS manipular el contenido del formulario con sus div -->
     <footer id="Contacto">
         <h2>Envianos tu consulta</h2>
-        <form action="link" method="post">
-            <div>
+        <form action="link" method="post" id="formulario-consulta">
+            <div >
                 <label for="Nombre">Nombre</label>
                 <input type="text" name="Nombre" id="Nombre">
+                <span class="error-message" id="nombre-error"></span>
             </div>
             <div>
                 <label for="Apellido">Apellido</label>
                 <input type="text" name="Apellido" id="Apellido">
+                <span class="error-message" id="apellido-error"></span>
+            </div>
+            <div>
+                <label for="Telefono">Telefono</label>
+                <input type="number" name="Telefono" id="Telefono">
+                <span class="error-message" id="telefono-error"></span>
             </div>
             <div>
                 <label for="Mail">Mail</label>
                 <input type="email" name="Mail" id="Mail">
+                <span class="error-message" id="mail-error"></span>
             </div>
             <div>
                 <label for="Consulta">Consulta:</label>
                 <textarea name="Consulta" id="Consulta" rows="5" cols="30">Deja tu consulta aqui</textarea>
+                <span class="error-message" id="consulta-error"></span>
             </div>
+            <div>
+                <input type="submit" value="Enviar" id="Boton-Enviar">
+            </div>
+
         </form>
 
 
 
     </footer>
+
+    <script src="pag_JavaScript/index.js"></script>
 </body>
 
 </html>
