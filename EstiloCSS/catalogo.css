@@ -200,3 +200,52 @@ form textarea {
     width: 250px;
     box-sizing: border-box;
 }
+
+
+
+
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 10px 0;
+  }
+
+  th {
+    text-align: center;
+    background-color: rgb(67, 31, 102);
+    border: 1px solid white;
+    margin-bottom: 10px;
+  }
+
+  .contenedor-remeras-blancas,
+  .contenedor-remeras-negras {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .lado-izquierdo,
+  .lado-derecho {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item-remera img {
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .item-remera p {
+    font-size: 14px;
+    text-align: center;
+  }
+}

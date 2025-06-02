@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
             errorApellido.textContent = "El apellido es obligatorio";
             return false;
         }
-        if(Apellido.length < 5 || Apellido.length > 30) {
+        if (Apellido.length < 5 || Apellido.length > 30) {
             errorApellido.textContent = "Debe contener entre 5 y 30 caracteres.";
             return false;
         }
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
         const errorMail = document.getElementById("mail-error");
 
-        if( email === "") {
+        if (email === "") {
             errorMail.textContent = "Ingrese un Email";
             return false;
         }
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const consulta = document.getElementById("Consulta").value;
         const errorConsulta = document.getElementById("consulta-error");
 
-        if(consulta === "") {
+        if (consulta === "") {
             errorConsulta.textContent = "Ingrese una consulta";
             return false;
         } else {
@@ -122,9 +122,9 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
             formulario.appendChild(mensajeExito);
         }
-        
+
         mensajeExito.textContent = 'Formulario de consulta enviado con exito';
-        
+
         setTimeout(() => {
             mensajeExito.textContent = '';
             formulario.reset();
@@ -137,9 +137,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Eventos
     document.getElementById("Nombre").addEventListener("blur", validarNombre);
-    document.getElementById("Nombre").addEventListener("input", () => {
-        document.getElementById("nombre-error").textContent = "";
-    })
+    document.getElementById("Nombre").addEventListener("input", validarNombre);
+    //document.getElementById("Nombre").addEventListener("input", () => {
+    //    document.getElementById("nombre-error").textContent = "";
+    //})
 
     document.getElementById("Apellido").addEventListener("blur", validarApellido);
     document.getElementById("Apellido").addEventListener("input", () => {
@@ -161,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById("consulta-error").textContent = "";
     });
 
-    
 
 
-});
+
+}); 
