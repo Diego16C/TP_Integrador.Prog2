@@ -4,29 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>inicio-sesion</title>
-    <link rel="stylesheet" href="../EstiloCSS/inicio-sesion.css">
+    <link rel="stylesheet" href="../static/EstiloCSS/inicio-sesion.css">
 </head>
 <body>
-    <div id="manejo">
-    <h2>inicio sesion</h2>
-    <form id="formulario"></form>
-    <div class="div-v">
-        <input type="text" id="usuario" placeholder="ingrese usuario">
-        <span class="error-message" id="usuario-error"></span>
-    </div>
-    <div class="div-v">
-        <input type="password" id="contraseña" placeholder="ingrese contraseña"><br>
-        <span class="error-message" id="contraseña-error"></span>
-    </div id="botones">
-    <button type="submit" class="button">Iniciar sesion</button>
-        <p>¿olvidaste tu contraseña?</p>
-        <a class="button" href="registro-sesion.html">Regístrate</a>
-        <a class="button" href="../index.html">Pagina principal</a><BR></BR>
-        <!-- <button type="submit" class="button">Iniciar sesion</button> -->
-    </div>
-    <div id="success-message" class="success-message"></div>
+  <div id="manejo">
+    <h2>Iniciar Sesión</h2>
+    <form id="form-login">
+      <input type="text" id="usuario" name="usuario" placeholder="Nombre de usuario" required>
+      <input type="password" id="password" name="password" placeholder="Contraseña" required>
+      <button class="button" type="submit">Iniciar sesión</button>
     </form>
+
+    <div class="button-container">
+      <a class="button" href="/registro">Registrarse</a>
+      <a class="button" href="/">Página principal</a>
     </div>
-    <script src=""></script>
+
+    <div id="mensaje"></div>
+  </div>
+
+  <script src="../pag_JavaScript/login.js"></script>
 </body>
 </html>

@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../EstiloCSS/registro.css">
+    <link rel="stylesheet" href="../static/EstiloCSS/registro.css">
 </head>
 <body>
-    <!-- <h2>registrarse</h2> -->
     <div id="manejo">
         <h2>Registrarse</h2>
-        <form action="/registro" method="post">
-            <input type="text" id="nombre" placeholder="ingrese nombre">
-            <input type="text" id="apellido" placeholder="ingrese apellido">
-            <input type="email" id="gmail" placeholder="correo electronico">
-            <input type="tel" id="telefono" placeholder="telefono">
-            <input type="text" id="usuario" placeholder="nombre de usuario">
-            <input type="password" id="contraseña" placeholder="contraseña">
+        <form id="form-registro">
+            <input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre" required>
+            <input type="text" name="apellido" id="apellido" placeholder="Ingrese apellido" required>
+            <input type="email" name="email" id="email" placeholder="Correo electrónico" required>
+            <input type="tel" name="telefono" id="telefono" placeholder="Teléfono">
+            <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario" required>
+            <input type="password" name="password" id="password" placeholder="Contraseña" required>
             <button class="button" type="submit">CREAR USUARIO</button><br>
+
             <div class="button-container">
-            <a class="button" href="../templates/inicio-sesion.html">Iniciar sesion</a>
-            <a class="button" href="../index.html">Pagina principal</a>
+                <a class="button" href="../templates/inicio-sesion.html">Iniciar sesión</a>
+                <a class="button" href="../templates/index.html">Página principal</a>
             </div><br>
-            <!-- <button class="button" type="submit">CREAR USUARIO</button> -->
         </form>
+
+        <div id="mensaje" style="color: green; margin-top: 10px;"></div>
     </div>
-    <script src=""></script>
+
+    <!-- Enlace al archivo JavaScript -->
+    <script src="../pag_JavaScript/registro.js"></script>
 </body>
 </html>
