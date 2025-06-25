@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #432066;
+}
+
+/* Contenedor general */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Formulario agregar producto */
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="number"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+}
+
+form button {
+    background-color: #432066;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #2d1645;
+}
+
+/* Mensajes */
+#mensaje {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Lista productos */
+#lista-productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.producto {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.producto img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.producto h3 {
+    margin-bottom: 10px;
+    color: #432066;
+}
+
+.producto p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.producto .precio {
+    font-weight: bold;
+    color: #27ae60;
+    margin-bottom: 10px;
+}
+
+.producto button {
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.producto button:hover {
+    background-color: #89271c;
+}
+
+/* Responsive */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 992px) {
+    #lista-productos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Móviles y pantallas pequeñas */
+@media (max-width: 600px) {
+    form {
+        padding: 15px;
+    }
+
+    #lista-productos {
+        grid-template-columns: 1fr;
+    }
+
+    form input[type="text"],
+    form input[type="number"],
+    form textarea {
+        font-size: 0.9rem;
+    }
+
+    form button {
+        width: 100%;
+        font-size: 1.1rem;
+    }
+}

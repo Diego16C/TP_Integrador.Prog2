@@ -1,32 +1,35 @@
 document.getElementById('form-registro').addEventListener('submit', async function (e) {
   e.preventDefault();
 
+  const form = e.target;
   const datos = {
-    nombre: document.getElementById('nombre').value.trim(),
-    apellido: document.getElementById('apellido').value.trim(),
-    email: document.getElementById('email').value.trim(),
-    telefono: document.getElementById('telefono').value.trim(),
-    usuario: document.getElementById('usuario').value.trim(),
-    password: document.getElementById('password').value.trim()
+    nombre: form.nombre.value.trim(),
+    apellido: form.apellido.value.trim(),
+    email: form.email.value.trim(),
+    telefono: form.telefono.value.trim(),
+    usuario: form.usuario.value.trim(),
+    password: form.password.value,
   };
 
   try {
-    const respuesta = await fetch('/api/registro', {
+    const response = await fetch('/api/registro', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(datos)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datos),
     });
 
-    const resultado = await respuesta.json();
-
+    const resultado = await response.json();
     const mensajeDiv = document.getElementById('mensaje');
-    mensajeDiv.innerText = resultado.mensaje;
-    mensajeDiv.style.color = respuesta.ok ? 'green' : 'red';
+    mensajeDiv.textContent = resultado.mensaje;
+    mensajeDiv.style.color = response.ok ? 'green' : 'red';
 
+    if (response.ok) {
+      form.reset();
+    }
   } catch (error) {
     console.error('Error al registrar:', error);
-    document.getElementById('mensaje').innerText = 'Error en el servidor.';
+    const mensajeDiv = document.getElementById('mensaje');
+    mensajeDiv.textContent = 'Error en el servidor.';
+    mensajeDiv.style.color = 'red';
   }
 });

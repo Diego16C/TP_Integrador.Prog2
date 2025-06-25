@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Administrar Productos</title>
+    <link rel="stylesheet" href="../EstiloCSS/producto.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="../templates/catalogo.html">Catálogo</a>
+            <a href="../templates/producto.html">Administrar Productos</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Panel de Administración de Productos</h1>
+        <div id="mensaje" class="mensaje"></div>
+
+        <form id="form-producto">
+            <input type="hidden" id="producto-id" />
+            <input type="text" id="nombre" placeholder="Nombre del producto" required />
+            <textarea id="descripcion" placeholder="Descripción"></textarea>
+            <input type="number" step="0.01" id="precio" placeholder="Precio" required />
+            <input type="text" id="imagen" placeholder="URL o nombre archivo imagen" />
+            <input type="text" id="usuario-admin" placeholder="Usuario Admin (para prueba)" required />
+            <button type="submit" id="btn-guardar">Agregar Producto</button>
+            <button type="button" id="btn-cancelar" style="display:none;">Cancelar</button>
+        </form>
+
+        <section>
+            <h2>Productos existentes</h2>
+            <table id="tabla-productos">
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Nombre</th><th>Descripción</th><th>Precio</th><th>Imagen</th><th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Productos cargados con JS -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../pag_JavaScript/producto.js"></script>
+</body>
+</html>
