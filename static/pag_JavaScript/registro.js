@@ -12,24 +12,28 @@ document.getElementById('form-registro').addEventListener('submit', async functi
   };
 
   try {
-    const response = await fetch('/api/registro', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(datos),
+    const respuesta = await fetch('/api/registro', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
     });
 
-    const resultado = await response.json();
+    const resultado = await respuesta.json();
     const mensajeDiv = document.getElementById('mensaje');
-    mensajeDiv.textContent = resultado.mensaje;
-    mensajeDiv.style.color = response.ok ? 'green' : 'red';
+    
+    mensajeDiv.innerText = resultado.mensaje;
+    mensajeDiv.style.color = respuesta.ok ? 'green' : 'red';
 
-    if (response.ok) {
-      form.reset();
+    if (respuesta.ok) {
+        setTimeout(() => {
+            window.location.href = '/login';
+        }, 2000);
     }
-  } catch (error) {
+
+} catch (error) {
     console.error('Error al registrar:', error);
-    const mensajeDiv = document.getElementById('mensaje');
-    mensajeDiv.textContent = 'Error en el servidor.';
-    mensajeDiv.style.color = 'red';
-  }
+    document.getElementById('mensaje').innerText = 'Error en el servidor.';
+}
 });

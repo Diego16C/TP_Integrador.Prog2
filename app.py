@@ -1,16 +1,17 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash  # Seguridad
+from sqlalchemy import or_
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
 # Configuración de la base de datos SQLite
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Archivo database.db en la raíz
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# Definición del modelo Usuario
+
 class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
@@ -18,22 +19,22 @@ class Usuario(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     telefono = db.Column(db.String(20))
     usuario = db.Column(db.String(50), unique=True, nullable=False)
-    password = db.Column(db.String(255), nullable=False)  # para hash se recomienda mayor tamaño
+    password = db.Column(db.String(255), nullable=False)
+    admin = db.Column(db.Boolean, default=False)  
 
-# Definición del modelo Producto
 class Producto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(150), nullable=False)
     descripcion = db.Column(db.Text, nullable=True)
     precio = db.Column(db.Float, nullable=False)
-    imagen = db.Column(db.String(100), nullable=True)  # nombre archivo imagen
+    imagen = db.Column(db.String(100), nullable=True)
 
-# Función para validar admin (simplificada)
+
 def es_admin(usuario):
     u = Usuario.query.filter_by(usuario=usuario).first()
     return u and u.admin
 
-
+# RUTAS DE PÁGINAS
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -49,14 +50,13 @@ def login():
 @app.route('/catalogo')
 def catalogo():
     productos = Producto.query.all()
-    return render_template('Catalogo.html', productos=productos)  # PASAR productos a plantilla
+    return render_template('Catalogo.html', productos=productos)
 
 @app.route('/producto')
 def producto_admin():
     return render_template('producto.html')
 
-
-# API para registrar usuario (recibe JSON)
+# API: REGISTRO
 @app.route('/api/registro', methods=['POST'])
 def api_registro():
     data = request.get_json()
@@ -65,13 +65,11 @@ def api_registro():
         return jsonify({'mensaje': 'No se recibió JSON'}), 400
 
     try:
-        # Validar si el email o usuario ya existen
-        if Usuario.query.filter((Usuario.email == data['email']) | (Usuario.usuario == data['usuario'])).first():
+        if Usuario.query.filter(or_(Usuario.email == data['email'], Usuario.usuario == data['usuario'])).first():
             return jsonify({'mensaje': 'Email o usuario ya registrado'}), 400
-        
-        # Hashear la contraseña antes de guardarla
+
         hashed_pw = generate_password_hash(data['password'])
-        
+
         nuevo_usuario = Usuario(
             nombre=data['nombre'],
             apellido=data['apellido'],
@@ -79,7 +77,7 @@ def api_registro():
             telefono=data.get('telefono', ''),
             usuario=data['usuario'],
             password=hashed_pw,
-            admin=False  # Por defecto no admin, cambiar en DB si es admin
+            admin=False
         )
 
         db.session.add(nuevo_usuario)
@@ -89,7 +87,7 @@ def api_registro():
     except Exception as e:
         return jsonify({'mensaje': f'Error al registrar: {str(e)}'}), 500
 
-# API login con verificación hash
+# API: LOGIN
 @app.route('/api/login', methods=['POST'])
 def api_login():
     data = request.get_json()
@@ -104,7 +102,7 @@ def api_login():
     else:
         return jsonify({'mensaje': 'Usuario o contraseña incorrectos'}), 401
 
-# API - Productos - Listar
+
 @app.route('/api/productos', methods=['GET'])
 def listar_productos():
     productos = Producto.query.all()
@@ -116,7 +114,6 @@ def listar_productos():
         'imagen': p.imagen
     } for p in productos])
 
-# API - Productos - Agregar (admin)
 @app.route('/api/productos', methods=['POST'])
 def agregar_producto():
     data = request.get_json()
@@ -134,32 +131,36 @@ def agregar_producto():
     db.session.commit()
     return jsonify({'mensaje': 'Producto agregado'}), 201
 
-# API - Productos - Modificar (admin)
+
 @app.route('/api/productos/<int:id>', methods=['PUT'])
 def modificar_producto(id):
     data = request.get_json()
     usuario = data.get('usuario')
     if not es_admin(usuario):
         return jsonify({'mensaje': 'Acceso denegado'}), 403
+
     producto = Producto.query.get_or_404(id)
     producto.nombre = data.get('nombre', producto.nombre)
     producto.descripcion = data.get('descripcion', producto.descripcion)
     producto.precio = data.get('precio', producto.precio)
     producto.imagen = data.get('imagen', producto.imagen)
+
     db.session.commit()
     return jsonify({'mensaje': 'Producto actualizado'})
 
-# API - Productos - Eliminar (admin)
+
 @app.route('/api/productos/<int:id>', methods=['DELETE'])
 def borrar_producto(id):
     usuario = request.args.get('usuario')
     if not es_admin(usuario):
         return jsonify({'mensaje': 'Acceso denegado'}), 403
+
     producto = Producto.query.get_or_404(id)
     db.session.delete(producto)
     db.session.commit()
     return jsonify({'mensaje': 'Producto eliminado'})
 
+# INICIAR APP
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
