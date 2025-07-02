@@ -1,251 +1,130 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  background-color: black;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+/* Header y navegación */
 header {
-    background-color: black;
+  background-color: black;
 }
 
 nav {
-    background-color: black;
-    border: 2px solid white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-    border-radius: 10px;
+  background-color: black;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  border-radius: 10px;
+  gap: 15px;
 }
 
 nav a {
-    padding: 10px 20px;
-    background-color: rgb(67, 31, 102);
-    border: 2px solid white;
-    border-radius: 10px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+  padding: 10px 20px;
+  background-color: rgb(67, 31, 102);
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
+nav a:hover {
+  background-color: rgb(90, 50, 130);
+}
+
+/* Main content */
 main {
-    background-color: black;
-    border: 2px solid white;
+  padding: 30px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-    color: white;
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: rgb(67, 31, 102);
+  padding: 10px;
 }
 
-th {
-    background-color: rgb(67, 31, 102);
-    /* fondo destacado */
-    color: white;
-    /* texto blanco */
-    padding: 10px;
-    /* espacio interno */
-    font-size: 1.2rem;
-    /* tamaño de letra más grande */
-    border: 2px solid white;
-    /* borde blanco para resaltar */
-    border-radius: 8px;
-    /* esquinas redondeadas */
-    text-transform: uppercase;
-    /* convierte el texto a mayúsculas */
-    text-align: center;
-    /* centra el texto */
+/* Grid de productos */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  padding: 20px;
 }
 
-th,
-td {
-    border: 1px solid white;
-    vertical-align: top;
-    padding: 10px;
-    width: 50%;
+.producto {
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #222;
+  text-align: center;
+  transition: transform 0.3s;
 }
 
-ul,
-ol {
-    list-style: none;
-    padding: 0;
+.producto:hover {
+  transform: scale(1.05);
 }
 
-img {
-    display: block;
-    margin: 10px auto;
-    border-radius: 10px;
+.producto img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid white;
 }
 
-.contenedor-remeras-blancas {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 10px;
+.producto h3 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+  color: white;
 }
 
-.lado-izquierdo,
-.lado-derecho {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.producto p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #ccc;
 }
 
-.item-remera {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+.producto .precio {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffcc00;
 }
 
-.item-remera img {
-    width: 110px;
-    border-radius: 10px;
-    border: 1px solid white;
-    transition: transform 0.3s ease;
-}
-
-.item-remera img:hover {
-    transform: scale(1.1); /* Efecto zoom suave */
-  }
-
-.item-remera p {
-    color: white;
-    margin-top: 5px;
-    background-color: rgb(67, 31, 102);
-    padding: 5px;
-    border-radius: 8px;
-    max-width: 120px;
-}
-
-.contenedor-remeras-negras {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 10px;
-}
-
-.contenedor-remeras-negras .lado-izquierdo,
-.contenedor-remeras-negras .lado-derecho {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.contenedor-remeras-negras .item-remera {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.contenedor-remeras-negras .item-remera img {
-    border-radius: 10px;
-    border: 1px solid white;
-}
-
-.contenedor-remeras-negras .item-remera p {
-    color: white;
-    margin-top: 5px;
-    background-color: rgb(67, 31, 102);
-    padding: 5px;
-    border-radius: 8px;
-    max-width: 120px;
-}
-
-
+/* Footer */
 footer {
-    background-color: black;
-    color: white;
-    padding: 40px;
-    border: 2px solid white;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
+  background-color: black;
+  padding: 20px;
+  text-align: center;
+  border-top: 2px solid white;
+  margin-top: 30px;
+  color: white;
 }
 
-footer h2 {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 28px;
-    border: 2px solid white;
-    border-radius: 10px;
-    background-color: rgb(67, 31, 102);
-    padding: 10px 20px;
-}
-
-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    max-width: 100%;
-    flex: 1;
-    justify-content: center;
-}
-
-form label {
-    font-weight: bold;
-    width: 100%;
-}
-
-form input,
-form textarea {
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    width: 250px;
-    box-sizing: border-box;
-}
-
-
-
-
-@media (max-width: 768px) {
-  table {
-    width: 100%;
-    font-size: 14px;
-    border-collapse: collapse;
+/* Responsive */
+@media (max-width: 600px) {
+  .productos-grid {
+    grid-template-columns: 1fr;
   }
 
-  th, td {
-    display: block;
-    width: 100%;
-    border: none;
-    padding: 10px 0;
+  .producto img {
+    height: 180px;
   }
 
-  th {
-    text-align: center;
-    background-color: rgb(67, 31, 102);
-    border: 1px solid white;
-    margin-bottom: 10px;
-  }
-
-  .contenedor-remeras-blancas,
-  .contenedor-remeras-negras {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .lado-izquierdo,
-  .lado-derecho {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .item-remera img {
-    width: 80%;
-    max-width: 300px;
-  }
-
-  .item-remera p {
-    font-size: 14px;
-    text-align: center;
+  h2 {
+    font-size: 24px;
   }
 }

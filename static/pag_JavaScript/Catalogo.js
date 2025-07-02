@@ -1,3 +1,42 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const contenedor = document.getElementById('contenedor-productos');
+
+    // Función para crear un elemento HTML de producto
+    function crearProductoHTML(producto) {
+        const div = document.createElement('div');
+        div.classList.add('producto');
+
+        div.innerHTML = `
+            <img src="/static/img/${producto.imagen}" alt="${producto.nombre}">
+            <h3>${producto.nombre}</h3>
+            <p>${producto.descripcion}</p>
+            <p class="precio">$${producto.precio.toFixed(2)}</p>
+        `;
+        return div;
+    }
+
+    // Cargar productos desde la API
+    async function cargarProductos() {
+        try {
+            const respuesta = await fetch('/api/productos');
+            if (!respuesta.ok) {
+                throw new Error('Error al obtener productos');
+            }
+            const productos = await respuesta.json();
+            productos.forEach(prod => {
+                const productoHTML = crearProductoHTML(prod);
+                contenedor.appendChild(productoHTML);
+            });
+        } catch (error) {
+            console.error('Error al cargar productos:', error);
+            contenedor.innerHTML = '<p>Error al cargar productos. Inténtalo más tarde.</p>';
+        }
+    }
+
+    cargarProductos();
+});
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const formulario = document.getElementById('formulario-consulta');
 
